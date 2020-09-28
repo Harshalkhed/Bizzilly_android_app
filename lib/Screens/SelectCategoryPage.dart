@@ -71,6 +71,7 @@ class _SelectCategoryPageState extends State<SelectCategoryPage> {
                   ),
                 ),
                 Container(
+                  width: double.maxFinite,
                   height: MediaQuery.of(context).size.height * 0.4,
                   child: ListView.builder(
                       itemCount: list.length,

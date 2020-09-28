@@ -74,21 +74,18 @@ class _DrawerPageState extends State<DrawerPage> {
                         onTap: () {
                           Navigator.pop(context);
                           Navigator.push(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder: (c, a1, a2) =>
-                                          AboutUs(),
-                                      transitionsBuilder:
-                                          (c, anim, a2, child) =>
-                                              FadeTransition(
-                                                  opacity: anim, child: child),
-                                      transitionDuration:
-                                          Duration(milliseconds: 1300),
-                                    ),
-                                  );
+                            context,
+                            PageRouteBuilder(
+                              pageBuilder: (c, a1, a2) => AboutUs(),
+                              transitionsBuilder: (c, anim, a2, child) =>
+                                  FadeTransition(opacity: anim, child: child),
+                              transitionDuration: Duration(milliseconds: 1300),
+                            ),
+                          );
                         },
                         child: ListTile(
-                          leading: Icon(Icons.account_box,color:Color.fromRGBO(31, 73, 125, 1.0)),
+                          leading: Icon(Icons.account_box,
+                              color: Color.fromRGBO(31, 73, 125, 1.0)),
                           title: Text(
                             "About Us",
                             style: TextStyle(
@@ -99,56 +96,60 @@ class _DrawerPageState extends State<DrawerPage> {
                       ),
                       GestureDetector(
                         onTap: () async {
-                            Navigator.pop(context);
-                            final url =
-                                'https://bizzilly.com';
-                            if (await canLaunch(url)) {
-                              await launch(url);
-                            } else {
-                              throw 'Could not launch $url';
-                            }  
+                          Navigator.pop(context);
+                          final url = 'https://bizzilly.com';
+                          if (await canLaunch(url)) {
+                            await launch(url);
+                          } else {
+                            throw 'Could not launch $url';
+                          }
                         },
                         child: ListTile(
-                          leading: Icon(Icons.business,color: Color.fromRGBO(31, 73, 125, 1.0),),
+                          leading: Icon(
+                            Icons.business,
+                            color: Color.fromRGBO(31, 73, 125, 1.0),
+                          ),
                           title: Text("Visit our site",
                               style: TextStyle(
                                   color: Color.fromRGBO(31, 73, 125, 1.0),
                                   fontWeight: FontWeight.bold)),
                         ),
-                      ),                      
+                      ),
                       GestureDetector(
                         onTap: () async {
-                            Navigator.pop(context);
-                            StoreRedirect.redirect(
-                              androidAppId: "com.securetech-solutions.bizzilly");                              
-                            },
+                          Navigator.pop(context);
+                          StoreRedirect.redirect(
+                              androidAppId: "com.securetechsolutions.bizzilly");
+                        },
                         child: ListTile(
-                          leading: Icon(Icons.star,color: Color.fromRGBO(31, 73, 125, 1.0),),
+                          leading: Icon(
+                            Icons.star,
+                            color: Color.fromRGBO(31, 73, 125, 1.0),
+                          ),
                           title: Text("Rate our app",
                               style: TextStyle(
                                   color: Color.fromRGBO(31, 73, 125, 1.0),
                                   fontWeight: FontWeight.bold)),
                         ),
-                      ),                      
+                      ),
                       GestureDetector(
                         onTap: () {
                           Navigator.pop(context);
                           Navigator.push(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder: (c, a1, a2) =>
-                                          PrivacyPolicy(),
-                                      transitionsBuilder:
-                                          (c, anim, a2, child) =>
-                                              FadeTransition(
-                                                  opacity: anim, child: child),
-                                      transitionDuration:
-                                          Duration(milliseconds: 1300),
-                                    ),
-                                  );
+                            context,
+                            PageRouteBuilder(
+                              pageBuilder: (c, a1, a2) => PrivacyPolicy(),
+                              transitionsBuilder: (c, anim, a2, child) =>
+                                  FadeTransition(opacity: anim, child: child),
+                              transitionDuration: Duration(milliseconds: 1300),
+                            ),
+                          );
                         },
                         child: ListTile(
-                          leading: Icon(Icons.lock,color: Color.fromRGBO(31, 73, 125, 1.0),),
+                          leading: Icon(
+                            Icons.lock,
+                            color: Color.fromRGBO(31, 73, 125, 1.0),
+                          ),
                           title: Text("Privacy Policy",
                               style: TextStyle(
                                   color: Color.fromRGBO(31, 73, 125, 1.0),
@@ -156,33 +157,33 @@ class _DrawerPageState extends State<DrawerPage> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: (){
-                            Navigator.pop(context);
-                            Navigator.push(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder: (c, a1, a2) =>
-                                          TermsAndConditions(),
-                                      transitionsBuilder:
-                                          (c, anim, a2, child) =>
-                                              FadeTransition(
-                                                  opacity: anim, child: child),
-                                      transitionDuration:
-                                          Duration(milliseconds: 1300),
-                                    ),
-                                  );
+                        onTap: () {
+                          Navigator.pop(context);
+                          Navigator.push(
+                            context,
+                            PageRouteBuilder(
+                              pageBuilder: (c, a1, a2) => TermsAndConditions(),
+                              transitionsBuilder: (c, anim, a2, child) =>
+                                  FadeTransition(opacity: anim, child: child),
+                              transitionDuration: Duration(milliseconds: 1300),
+                            ),
+                          );
                         },
                         child: ListTile(
-                          leading: Icon(Icons.content_copy,color: Color.fromRGBO(31, 73, 125, 1.0),),
+                          leading: Icon(
+                            Icons.content_copy,
+                            color: Color.fromRGBO(31, 73, 125, 1.0),
+                          ),
                           title: Text("Terms And Conditions",
                               style: TextStyle(
                                   color: Color.fromRGBO(31, 73, 125, 1.0),
-                                  fontWeight: FontWeight.bold,fontSize: 14.0)),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14.0)),
                         ),
                       ),
                     ],
                   ),
-                ),                
+                ),
               ],
             )),
       ),

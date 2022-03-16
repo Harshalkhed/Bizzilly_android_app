@@ -1,3 +1,4 @@
+//Model class for 
 class CategoriesModel {
   final String _id;
   final String name;

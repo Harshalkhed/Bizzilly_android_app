@@ -1,3 +1,4 @@
+//Model class for storing business related data
 class BusinessesModel {
   final String id;
   final String language;
@@ -30,6 +31,7 @@ class BusinessesModel {
       this.community,
       this.latitude,this.longitude);
 
+  //Factory method for parsing JSON
   BusinessesModel.fromJson(Map<String, dynamic> json)
       : id = json['_id'],
         language = json['language'],
@@ -44,7 +46,7 @@ class BusinessesModel {
         image = json['image'],
         category = json['category'],
         community = json['community'];
-
+//Factory method for converting object to JSON
   Map<String, dynamic> toJson() => {
         'id': id,
         'language': language,

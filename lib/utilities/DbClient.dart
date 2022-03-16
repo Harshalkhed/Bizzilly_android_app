@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+//SqFlite Database client for storing local data 
 class DbClient
 {
   getDatabaseConnection() async

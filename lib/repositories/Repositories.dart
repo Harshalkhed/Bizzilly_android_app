@@ -2,39 +2,45 @@ import 'package:bizzilly/providers/ApiProvider.dart';
 
 class Repositories {
   final apiProvider = ApiProvider();
-  // login
+  // Repository method for login
   Future<String> checkLogin(email, password) =>
       apiProvider.checkLogin(email, password);
 
-  //registration
+  // Repository method for registration
   Future<String> registerUser(name, email, password) =>
       apiProvider.registerUSer(name, email, password);
 
-  //change password( get user email )
+  // Repository method for getting user email
   Future<String> getUserEmail(email) =>
       apiProvider.getUserEmailChangePassword(email);
 
-  //change password( verify code )
+  // Repository method for verifying change password OTP
   Future<String> verifyCode(email, code) =>
       apiProvider.verifyCodeChangePassword(email, code);
 
-  //verify user email
-
+  // Repository method for verifying user email
   Future<String> verifyEmail(email, code) =>
       apiProvider.verifyEmail(email, code);
 
-  //change password( get user email )
+  // Repository method for change password
   Future<String> changePassword(email, password) =>
       apiProvider.changePassword(email, password);
 
-  //get businesses list
-  Future<List> getBusinessesList(category, latitude, longitude, community,subCategory) =>
-      apiProvider.getBusinessesList(category, latitude, longitude, community,subCategory);
+  //Repository method for getting businesses list
+  Future<List> getBusinessesList(
+          category, latitude, longitude, community, subCategory) =>
+      apiProvider.getBusinessesList(
+          category, latitude, longitude, community, subCategory);
 
+  //Repository method for getting communities and categories list
   Future getCommunitiesAndCategories() =>
       apiProvider.getCommunitiesAndCategories();
 
-  Future<String> updateFavorites(id,action) => apiProvider.updateFavourites(id,action);
+//Repository method for updating favourites
+  Future<String> updateFavorites(id, action) =>
+      apiProvider.updateFavourites(id, action);
 
-  Future<String> postSuggestion(name,email,message)=> apiProvider.postSuggestion(name, email, message);
+//Repository method for posting suggestion
+  Future<String> postSuggestion(name, email, message) =>
+      apiProvider.postSuggestion(name, email, message);
 }

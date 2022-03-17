@@ -7,15 +7,15 @@ import 'package:bizzilly/utilities/constants.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
+//class for storing API functions
 class ApiProvider {
   final storage = FlutterSecureStorage();
-  // API for login
+
+  // API function for login
+  //METHOD : POST
   Future<String> checkLogin(String email, String password) async {
     var resp;
     try {
-      print(email);
-      print(password);
-      
       http.Response response = await http.post(BASE_URL + "users/login",
           body: {'email': email, 'password': password});
       print(response.body);
@@ -52,9 +52,10 @@ class ApiProvider {
     return resp;
   }
 
-  //API for registering user
+  //API function for registering user
+  //METHOD : POST
   Future<String> registerUSer(
-    String name, String email, String password) async {
+      String name, String email, String password) async {
     var msg;
     try {
       print(name);
@@ -72,7 +73,7 @@ class ApiProvider {
           msg = decRes['msg'];
         }
       } else {
-        msg =  '';
+        msg = '';
       }
     } catch (err) {
       print(err.toString());
@@ -80,6 +81,8 @@ class ApiProvider {
     return msg;
   }
 
+  //API function for getting communities and categories
+  //METHOD : GET
   Future getCommunitiesAndCategories() async {
     try {
       print("inhere com and cat");
@@ -115,10 +118,11 @@ class ApiProvider {
     }
   }
 
+  //Alternative API function for getting communities and categories
+  //METHOD : GET
   Future<String> getCommunitiesAndCategoriesCom() async {
     var resp;
     try {
-      
       print("inhere com and cat");
 
       // var token = await storage.read(key: "token");
@@ -145,7 +149,7 @@ class ApiProvider {
               key: 'favorites', value: json.encode(decRes['favorites']));
           await storage.write(
               key: 'communities', value: json.encode(communities));
-              resp = json.encode(communities);
+          resp = json.encode(communities);
         } else {
           resp = "";
         }
@@ -156,6 +160,8 @@ class ApiProvider {
     return resp;
   }
 
+  //Alternative API function for getting communities and categories
+  //METHOD : GET
   Future<String> getCommunitiesAndCategoriesCat() async {
     var resp;
     try {
@@ -185,7 +191,7 @@ class ApiProvider {
               key: 'favorites', value: json.encode(decRes['favorites']));
           await storage.write(
               key: 'communities', value: json.encode(communities));
-              resp = json.encode(categories);
+          resp = json.encode(categories);
         } else {
           resp = "";
         }
@@ -196,7 +202,8 @@ class ApiProvider {
     return resp;
   }
 
-  //API for changing password ( get user email )
+  //API method for changing password ( get user email )
+  //METHOD : POST
   Future<String> getUserEmailChangePassword(String email) async {
     var resp;
     try {
@@ -221,7 +228,8 @@ class ApiProvider {
     return resp;
   }
 
-  //API for changing password ( verify code )
+  //API function for changing password ( verify code )
+  //METHOD : POST
   Future<String> verifyCodeChangePassword(String email, String code) async {
     var resp;
     try {
@@ -245,7 +253,8 @@ class ApiProvider {
     return resp;
   }
 
-  //API for changing password ( get user email )
+  //API function for changing password ( get user email )
+  //METHOD : POST
   Future<String> changePassword(String email, String password) async {
     var resp;
     try {
@@ -269,16 +278,17 @@ class ApiProvider {
     return resp;
   }
 
-  //get businesses in the near by location
+  //API function for getting businesses in the near by location
+  //METHOD : POST
   Future<List> getBusinessesList(
       category, latitude, longitude, community, subCategory) async {
     var resp;
     try {
-      print("Category"+category);
-      print("Community"+community);
-      print("Subcategory"+subCategory);
-      print("latitude"+latitude.toString());
-      print("longitude"+longitude.toString());
+      print("Category" + category);
+      print("Community" + community);
+      print("Subcategory" + subCategory);
+      print("latitude" + latitude.toString());
+      print("longitude" + longitude.toString());
       http.Response response =
           await http.post(BASE_URL + "users/get_businesses", body: {
         'category': category,
@@ -309,22 +319,20 @@ class ApiProvider {
     return resp;
   }
 
-  Future<List> getVendorsMobile(latitude,longitude) async 
-  {
+  //API function for getting vendors list
+  //METHOD : POST
+  Future<List> getVendorsMobile(latitude, longitude) async {
     var resp;
-    try 
-    {
-      http.Response response = await http.post(BASE_URL + 'vendors/get_vendors_mobile',
-      body: {
-        'latitude':latitude.toString(),
-        'longitude':longitude.toString()
+    try {
+      http.Response response = await http
+          .post(BASE_URL + 'vendors/get_vendors_mobile', body: {
+        'latitude': latitude.toString(),
+        'longitude': longitude.toString()
       });
       print(response.body);
-      if(response.statusCode == 200)
-      {
+      if (response.statusCode == 200) {
         var decodedResponse = json.decode(response.body);
-        if(decodedResponse['state'] == 'success')
-        {
+        if (decodedResponse['state'] == 'success') {
           if (decodedResponse['data'].length == 0) {
             resp = [];
           } else {
@@ -333,21 +341,18 @@ class ApiProvider {
                 .toList();
             resp = list;
           }
-        }
-        else 
-        {
+        } else {
           resp = [];
         }
       }
-    }
-    catch(err)
-    {
+    } catch (err) {
       print(err.toString());
     }
     return resp;
   }
 
-  //verify email
+  //API function for verifying email
+  //METHOD : POST
   Future<String> verifyEmail(email, code) async {
     var resp;
     try {
@@ -372,6 +377,8 @@ class ApiProvider {
     return resp;
   }
 
+  //API function for updating favourites
+  //METHOD : POST
   Future<String> updateFavourites(id, action) async {
     var resp;
     try {
@@ -396,59 +403,50 @@ class ApiProvider {
     }
     return resp;
   }
-  Future<List> getCommunities() async
-  {   
-    var resp; 
-    try 
-    {
-      
-      http.Response response = await http.get(
-          BASE_URL + "communities/get_communities");
+
+  //API function for getting only communities
+  //METHOD : GET
+  Future<List> getCommunities() async {
+    var resp;
+    try {
+      http.Response response =
+          await http.get(BASE_URL + "communities/get_communities");
       print(response.body);
       if (response.statusCode == 200) {
         var decRes = json.decode(response.body);
         if (decRes['state'] == 'success') {
-          resp = decRes['data'];          
+          resp = decRes['data'];
         } else {
           resp = [];
         }
       } else {
         resp = 'fail';
       }
-    }
-    catch(err)
-    {
+    } catch (err) {
       print(err.toString());
     }
     return resp;
-  }  
-  Future<String> postSuggestion(name,email,message) async 
-  {    
-    try 
-    {
-      http.Response response = await http.post(BASE_URL + 'users/post_suggestion',
-          body: {'email': email, 'name': name,'message':message});
+  }
+
+  //API function for posting suggestions
+  //METHOD : POST
+  Future<String> postSuggestion(name, email, message) async {
+    try {
+      http.Response response = await http.post(
+          BASE_URL + 'users/post_suggestion',
+          body: {'email': email, 'name': name, 'message': message});
       var decodedResponse = json.decode(response.body);
-      if(response.statusCode == 200)
-      {
-        if(decodedResponse['state'] == 'success')
-        {
+      if (response.statusCode == 200) {
+        if (decodedResponse['state'] == 'success') {
           return 'success';
-        }
-        else 
-        {
+        } else {
           return 'fail';
         }
-      }
-      else 
-      {
+      } else {
         return 'fail';
       }
-    }
-    catch(err)
-    {
+    } catch (err) {
       print(err.toString());
     }
-
   }
 }

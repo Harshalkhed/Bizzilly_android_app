@@ -1,35 +1,45 @@
+//class for managing SliderModel properties
+
 class SliderModel {
   String imageAssetPath;
   String title;
   String desc;
 
+  //constructor
   SliderModel({this.imageAssetPath, this.title, this.desc});
 
+  //method for setting asset path
   void setImageAssetPath(String getImageAssetPath) {
     imageAssetPath = getImageAssetPath;
   }
 
+  //method for setting asset title
   void setTitle(String getTitle) {
     title = getTitle;
   }
 
+  //method for setting description
   void setDesc(String getDesc) {
     desc = getDesc;
   }
 
+  //method for getting image asset path
   String getImageAssetPath() {
     return imageAssetPath;
   }
 
+  //method for getting title
   String getTitle() {
     return title;
   }
 
+  //method for getting description
   String getDesc() {
     return desc;
   }
 }
 
+//method for getting slides
 List<SliderModel> getSlides() {
   List<SliderModel> slides = new List<SliderModel>();
   SliderModel sliderModel = new SliderModel();

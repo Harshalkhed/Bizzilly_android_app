@@ -4,10 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:bizzilly/Screens/DetailsListPage.dart';
 import 'package:bizzilly/bloc/CategoriesBloc.dart';
 
+// Select category page
+// Widget Type : Stateful Widget
 class SelectCategoryPage extends StatefulWidget {
   final community;
   final commIndex;
-  SelectCategoryPage(this.commIndex,this.community);
+  //constructor
+  SelectCategoryPage(this.commIndex, this.community);
   @override
   _SelectCategoryPageState createState() => _SelectCategoryPageState();
 }
@@ -28,6 +31,7 @@ class _SelectCategoryPageState extends State<SelectCategoryPage> {
     checkInternetConnection();
   }
 
+  //method for getting categories
   getCategories() async {
     setState(() {
       isLoading = false;
@@ -38,7 +42,9 @@ class _SelectCategoryPageState extends State<SelectCategoryPage> {
       categories2 = categories;
     });
   }
-    checkInternetConnection() async {
+
+  //method for checking internet connection
+  checkInternetConnection() async {
     connectivityResult = await (Connectivity().checkConnectivity());
     setState(() {
       if (connectivityResult == ConnectivityResult.mobile ||
@@ -46,11 +52,12 @@ class _SelectCategoryPageState extends State<SelectCategoryPage> {
         isConnectionActive = true;
         getCategories();
       } else {
-        
         isConnectionActive = false;
       }
     });
   }
+
+  //method for selecting subcategory
   selectSubcategory(list, index2) async {
     return showDialog<void>(
       context: context,
@@ -65,10 +72,10 @@ class _SelectCategoryPageState extends State<SelectCategoryPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Center(
-                  child: Text(
-                    "Select Subcategory",
-                    style: TextStyle(color: Color.fromRGBO(31, 73, 125, 1.0),fontWeight: FontWeight.bold)
-                  ),
+                  child: Text("Select Subcategory",
+                      style: TextStyle(
+                          color: Color.fromRGBO(31, 73, 125, 1.0),
+                          fontWeight: FontWeight.bold)),
                 ),
                 Container(
                   width: double.maxFinite,
@@ -84,9 +91,12 @@ class _SelectCategoryPageState extends State<SelectCategoryPage> {
                                   PageRouteBuilder(
                                     pageBuilder: (c, a1, a2) => DetailsListPage(
                                       widget.commIndex,
-                                        categories[index2]['_id'],
-                                        widget.community,
-                                        list[index]['_id'],catIndex: index2,subCatIndex: index,),
+                                      categories[index2]['_id'],
+                                      widget.community,
+                                      list[index]['_id'],
+                                      catIndex: index2,
+                                      subCatIndex: index,
+                                    ),
                                     transitionsBuilder: (c, anim, a2, child) =>
                                         FadeTransition(
                                             opacity: anim, child: child),
@@ -122,7 +132,8 @@ class _SelectCategoryPageState extends State<SelectCategoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    return isConnectionActive == false? Scaffold(
+    return isConnectionActive == false
+        ? Scaffold(
             key: _scaffoldKey,
             body: Center(
                 child: Column(
@@ -153,103 +164,116 @@ class _SelectCategoryPageState extends State<SelectCategoryPage> {
                 )
               ],
             )),
-          ): Scaffold(
-      key: _scaffoldKey,
-      appBar: AppBar(
-        centerTitle: true,
-        elevation: 0.0,
-        backgroundColor: Color.fromRGBO(31, 73, 125, 1.0),
-        title: Text(
-          "Select Category",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-      ),
-      body: isLoading == false
-          ? Center(
-              child: CircularProgressIndicator(
-                backgroundColor: Color.fromRGBO(31, 73, 125, 1.0),
-              ),
-            )
-          : SingleChildScrollView(
-              child: Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.only(top: 15),
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.8,
-                      width: MediaQuery.of(context).size.width,
-                      margin: EdgeInsets.all(10),
-                      child: GridView.builder(
-                          itemCount: categories.length ?? 0,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 3,
-                                  crossAxisSpacing: 10,
-                                  mainAxisSpacing: 10),
-                          itemBuilder: (ctx, index) {
-                            return GestureDetector(
-                              onTap: () {
-                                if (categories[index]['subcategories'].length >
-                                    0) {
-                                  selectSubcategory(
-                                      categories[index]['subcategories'],
-                                      index);
-                                } else {
-                                  Navigator.push(
-                                    context,
-                                    PageRouteBuilder(
-                                      pageBuilder: (c, a1, a2) =>
-                                          DetailsListPage(
-                                            widget.commIndex,
-                                              categories[index]['_id'],
-                                              widget.community,
-                                              "",catIndex: index),
-                                      transitionsBuilder:
-                                          (c, anim, a2, child) =>
-                                              FadeTransition(
-                                                  opacity: anim, child: child),
-                                      transitionDuration:
-                                          Duration(milliseconds: 1300),
-                                    ),
-                                  );
-                                }
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    color: Color.fromRGBO(31, 73, 125, 1.0),
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: <Widget>[
-                                    CachedNetworkImage(
-                                      placeholder: (context, url) =>
-                                          Container(
-                                            width:40,
-                                            height:8,
-                                            child: const CircularProgressIndicator(backgroundColor: Colors.white,)),
-                                      imageUrl:
-                                          'https://bizzilly.com/uploads/' +
-                                              categories[index]['image'].toString(),
-                                      height: 50,
-                                    ),
-                                    Text(
-                                      categories[index]['name'],
-                                      style: TextStyle(
-                                          fontSize: 10.0, fontWeight: FontWeight.bold,color: Colors.white),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            );
-                          }),
-                    )
-                  ],
-                ),
+          )
+        : Scaffold(
+            key: _scaffoldKey,
+            appBar: AppBar(
+              centerTitle: true,
+              elevation: 0.0,
+              backgroundColor: Color.fromRGBO(31, 73, 125, 1.0),
+              title: Text(
+                "Select Category",
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
-    );
+            body: isLoading == false
+                ? Center(
+                    child: CircularProgressIndicator(
+                      backgroundColor: Color.fromRGBO(31, 73, 125, 1.0),
+                    ),
+                  )
+                : SingleChildScrollView(
+                    child: Container(
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width,
+                      margin: EdgeInsets.only(top: 15),
+                      child: Column(
+                        children: <Widget>[
+                          Container(
+                            height: MediaQuery.of(context).size.height * 0.8,
+                            width: MediaQuery.of(context).size.width,
+                            margin: EdgeInsets.all(10),
+                            child: GridView.builder(
+                                itemCount: categories.length ?? 0,
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 3,
+                                        crossAxisSpacing: 10,
+                                        mainAxisSpacing: 10),
+                                itemBuilder: (ctx, index) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      if (categories[index]['subcategories']
+                                              .length >
+                                          0) {
+                                        selectSubcategory(
+                                            categories[index]['subcategories'],
+                                            index);
+                                      } else {
+                                        Navigator.push(
+                                          context,
+                                          PageRouteBuilder(
+                                            pageBuilder: (c, a1, a2) =>
+                                                DetailsListPage(
+                                                    widget.commIndex,
+                                                    categories[index]['_id'],
+                                                    widget.community,
+                                                    "",
+                                                    catIndex: index),
+                                            transitionsBuilder:
+                                                (c, anim, a2, child) =>
+                                                    FadeTransition(
+                                                        opacity: anim,
+                                                        child: child),
+                                            transitionDuration:
+                                                Duration(milliseconds: 1300),
+                                          ),
+                                        );
+                                      }
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color:
+                                              Color.fromRGBO(31, 73, 125, 1.0),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: <Widget>[
+                                          CachedNetworkImage(
+                                            placeholder: (context, url) =>
+                                                Container(
+                                                    width: 40,
+                                                    height: 8,
+                                                    child:
+                                                        const CircularProgressIndicator(
+                                                      backgroundColor:
+                                                          Colors.white,
+                                                    )),
+                                            imageUrl:
+                                                'https://bizzilly.com/uploads/' +
+                                                    categories[index]['image']
+                                                        .toString(),
+                                            height: 50,
+                                          ),
+                                          Text(
+                                            categories[index]['name'],
+                                            style: TextStyle(
+                                                fontSize: 10.0,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                }),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+          );
   }
 }

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:bizzilly/Screens/SelectCategoryPage.dart';
 import 'package:bizzilly/bloc/CommunitiesBloc.dart';
 
+// Community Data page
+// Widget Type : Stateful Widget
 class ComunityData extends StatefulWidget {
   @override
   _ComunityDataState createState() => _ComunityDataState();
@@ -130,9 +132,8 @@ class _ComunityDataState extends State<ComunityData> {
                                         context,
                                         PageRouteBuilder(
                                           pageBuilder: (c, a1, a2) =>
-                                              SelectCategoryPage(
-                                                index,
-                                                communities[index]['_id']),
+                                              SelectCategoryPage(index,
+                                                  communities[index]['_id']),
                                           transitionsBuilder:
                                               (c, anim, a2, child) =>
                                                   FadeTransition(

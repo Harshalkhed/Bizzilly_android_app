@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:bizzilly/utilities/constants.dart';
 
+//Reusable textfield container widget
 class TextFieldContainer extends StatelessWidget {
   final Widget child;
+  //constructor
   const TextFieldContainer({
     Key key,
     this.child,

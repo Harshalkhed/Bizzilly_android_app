@@ -7,7 +7,7 @@ class CacheModel {
   //constructor
   CacheModel({this.data, this.ctx});
   
-  //method to generate a map 
+  //method for generating a map 
   Map<String, dynamic> toMap() {
     return {      
       'data': data,

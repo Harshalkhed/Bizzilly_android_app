@@ -4,6 +4,8 @@ import 'package:bizzilly/Screens/Community_Screen/community_screen.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'SliderModel.dart';
 
+// Walkthrough screen for highlighting important features of the application
+//Widget Type : Stateful Widget
 class Walkthrough extends StatefulWidget {
   @override
   _WalkthroughState createState() => _WalkthroughState();
@@ -12,9 +14,10 @@ class Walkthrough extends StatefulWidget {
 class _WalkthroughState extends State<Walkthrough> {
   List<SliderModel> mySLides = new List<SliderModel>();
   int slideIndex = 0;
+  //instance of page controller which manages properties of PageView
   PageController controller;
   final storage = FlutterSecureStorage();
-
+  //method for building the page indicator dots
   Widget _buildPageIndicator(bool isCurrentPage) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 2.0),
@@ -28,7 +31,7 @@ class _WalkthroughState extends State<Walkthrough> {
   }
 
   @override
-  void initState() {    
+  void initState() {
     super.initState();
     mySLides = getSlides();
     controller = new PageController();
@@ -52,16 +55,19 @@ class _WalkthroughState extends State<Walkthrough> {
               });
             },
             children: <Widget>[
+              //instance of SlideTile
               SlideTile(
                 imagePath: mySLides[0].getImageAssetPath(),
                 title: mySLides[0].getTitle(),
                 desc: mySLides[0].getDesc(),
               ),
+              //instance of SlideTile
               SlideTile(
                 imagePath: mySLides[1].getImageAssetPath(),
                 title: mySLides[1].getTitle(),
                 desc: mySLides[1].getDesc(),
               ),
+              //instance of SlideTile
               SlideTile(
                 imagePath: mySLides[2].getImageAssetPath(),
                 title: mySLides[2].getTitle(),
@@ -120,8 +126,8 @@ class _WalkthroughState extends State<Walkthrough> {
               )
             : InkWell(
                 onTap: () async {
+                  //set the flag 'first_time' to true
                   await storage.write(key: "first_time", value: "true");
-
                   Navigator.push(
                     context,
                     PageRouteBuilder(
@@ -132,6 +138,7 @@ class _WalkthroughState extends State<Walkthrough> {
                     ),
                   );
                 },
+                //after clicking on this text, the user will be redirected to community selection screen
                 child: Container(
                   height: Platform.isIOS ? 70 : 60,
                   color: Color.fromRGBO(31, 73, 125, 1.0),
@@ -148,9 +155,11 @@ class _WalkthroughState extends State<Walkthrough> {
   }
 }
 
+//reusable widget for individual slide tile which contains an image,title and description
 class SlideTile extends StatelessWidget {
   final imagePath, title, desc;
 
+  //constuctor
   SlideTile({this.imagePath, this.title, this.desc});
 
   @override

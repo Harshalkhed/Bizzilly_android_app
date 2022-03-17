@@ -6,6 +6,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:store_redirect/store_redirect.dart';
 
+// Drawer page
+// Widget Type : Stateful Widget
 class DrawerPage extends StatefulWidget {
   @override
   _DrawerPageState createState() => _DrawerPageState();

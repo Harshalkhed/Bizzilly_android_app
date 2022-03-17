@@ -8,11 +8,13 @@ class SplashBloc {
   var token;
   final storage = FlutterSecureStorage();
   Repositories repositories = Repositories();
+  //method for getting communities and categories
   getCommunitiesAndCategories() {
     repositories.getCommunitiesAndCategories();
   }
 
-  Future<Widget> getToken() async { 
+  //method for getting token from secure storage
+  Future<Widget> getToken() async {
     token = await storage.read(key: "first_time");
     if (token == null) {
       getCommunitiesAndCategories();
@@ -25,4 +27,5 @@ class SplashBloc {
   }
 }
 
+//this instance can be accessed directly from anywhere
 final splashBloc = SplashBloc();

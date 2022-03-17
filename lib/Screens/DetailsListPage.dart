@@ -11,6 +11,8 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'DrawerPage.dart';
 
+// Details List page
+// Widget Type : Stateful Widget
 class DetailsListPage extends StatefulWidget {
   final category, community, subCategory, catIndex, commIndex, subCatIndex;
   DetailsListPage(

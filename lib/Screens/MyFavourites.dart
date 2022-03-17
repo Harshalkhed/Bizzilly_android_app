@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:bizzilly/utilities/constants.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
+// My Favourites page
+// Widget Type : Stateful Widget
 class MyFavourites extends StatefulWidget {
   @override
   _MyFavouritesState createState() => _MyFavouritesState();
@@ -13,7 +15,7 @@ class _MyFavouritesState extends State<MyFavourites> {
   List favorites;
   final storage = FlutterSecureStorage();
   @override
-  void initState() {    
+  void initState() {
     super.initState();
     favorites = [];
     getFavorites();
@@ -82,7 +84,7 @@ class _MyFavouritesState extends State<MyFavourites> {
                                             fontWeight: FontWeight.bold,
                                             fontSize: 18),
                                       ),
-                                    ),                                  
+                                    ),
                                   ],
                                 ),
                                 Row(

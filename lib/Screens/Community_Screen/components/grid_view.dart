@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// Grid View page
+// Widget Type : Stateful Widget
 class GridView1 extends StatefulWidget {
   @override
   _GridView1State createState() => _GridView1State();
@@ -31,7 +33,6 @@ class _GridView1State extends State<GridView1> {
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 25.0,
-                
                   fontWeight: FontWeight.bold,
                 ),
               )

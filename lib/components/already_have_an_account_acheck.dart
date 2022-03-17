@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:bizzilly/utilities/constants.dart';
 
+//Resuable already have an account check field
 class AlreadyHaveAnAccountCheck extends StatelessWidget {
   final bool login;
   final Function press;
+  //constructor
   const AlreadyHaveAnAccountCheck({
     Key key,
     this.login = true,

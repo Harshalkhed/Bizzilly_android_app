@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:bizzilly/components/text_field_container.dart';
 import 'package:bizzilly/utilities/constants.dart';
 
+//Reusable rounded password field widget
 class RoundedPasswordField extends StatefulWidget {
   final ValueChanged<String> onChanged;
 
   final hinText;
+  //constructor
   const RoundedPasswordField({Key key, this.onChanged, this.hinText})
       : super(key: key);
   @override
@@ -17,12 +19,13 @@ class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
   var i;
 
   @override
-  void initState() {    
+  void initState() {
     super.initState();
     i = Icon(Icons.visibility_off);
     passwordVisible = true;
   }
 
+  // method for showing popup menu
   void _showPopupMenu() async {
     await showMenu(
       context: context,

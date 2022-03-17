@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:bizzilly/utilities/constants.dart';
 
+//Reusable rounded button widget
 class RoundedButton extends StatelessWidget {
   final String text;
   final Function press;
   final Color color, textColor;
+  //constructor
   const RoundedButton({
     Key key,
     this.text,

@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter/animation.dart';
 
+// Splash Screen
+// Widget Type : Stateful Widget
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -13,7 +15,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
-  Animation animation, delayedAnimation, muchDelayedAnimation;  
+  Animation animation, delayedAnimation, muchDelayedAnimation;
   AnimationController animationController;
   var screenName;
   final storage = FlutterSecureStorage();
@@ -25,10 +27,10 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   void initState() {
-    // getToken();         
-    
-  // your code after page opens,splash keeps open until work is done
-  Timer(
+    // getToken();
+
+    // splash keeps open until work is done
+    Timer(
         Duration(seconds: 5),
         () => Navigator.push(
               context,
@@ -55,9 +57,8 @@ class _SplashScreenState extends State<SplashScreen>
         parent: animationController,
         curve: Interval(0.8, 1.0, curve: Curves.fastOutSlowIn)));
     super.initState();
-    userDataUrl = BASE_URL + 'users/get_user_data';   
-    getScreenName();     
-  
+    userDataUrl = BASE_URL + 'users/get_user_data';
+    getScreenName();
   }
 
   checkInternetConnection() async {
@@ -65,7 +66,7 @@ class _SplashScreenState extends State<SplashScreen>
     setState(() {
       if (connectivityResult == ConnectivityResult.mobile ||
           connectivityResult == ConnectivityResult.wifi) {
-        isConnectionActive = true;        
+        isConnectionActive = true;
       } else {
         isConnectionActive = false;
       }
@@ -83,25 +84,33 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   @override
-  Widget build(BuildContext context) {    
+  Widget build(BuildContext context) {
     animationController.forward();
 
     return AnimatedBuilder(
         animation: animationController,
         builder: (BuildContext context, Widget child) {
-          return Scaffold(            
+          return Scaffold(
               body: Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,              
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Image.asset("assets/images/Logo_Blue.png",height: 140,width: 170),
-                Container( 
-                  child: Column(children: <Widget>[
-                    Text('Powered By',style:TextStyle(color: Color.fromRGBO(31, 73, 125, 1.0),fontSize: 20.0,fontWeight: FontWeight.bold)),
-                    Image.asset("assets/images/SecureTech.png",height: 150,width: 150)
-                  ],),
+                Image.asset("assets/images/Logo_Blue.png",
+                    height: 140, width: 170),
+                Container(
+                  child: Column(
+                    children: <Widget>[
+                      Text('Powered By',
+                          style: TextStyle(
+                              color: Color.fromRGBO(31, 73, 125, 1.0),
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold)),
+                      Image.asset("assets/images/SecureTech.png",
+                          height: 150, width: 150)
+                    ],
+                  ),
                 )
               ],
             ),
